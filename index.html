@@ -1,105 +1,398 @@
-:none}.screen.active{display:block}.card{background:rgba(6,26,51,.84);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);box-shadow:0 0 24px rgba(0,0,0,.42),inset 0 0 0 1px rgba(255,255,255,.03)}
-  
-.glow-card{:color-mix(in srgb,var(--accent) 70%,transparent);box-shadow:0 0 26px color-mix(in srgb,var(--accent) 34%,transparent)}
-.small{font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:.6px;text-transform:uppercase}.title{font-size:24px;font-weight:900;margin-bottom:8px}.subtitle{font-size:14px;line-height:1.45;color:#e8fbff}.button{display:block;width:100%;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061A33;padding:14px;border-radius:999px;font-size:15px;font-weight:900;margin-top:14px}.button.secondary{background:rgba(255,255,255,.08);color:white;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:14px 10px}.tile strong{display:block;font-size:14px;margin-top:6px}.tile span{color:var(--accent)}
-.match-card{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.32));border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:14px;margin-top:12px}.match-teams{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;text-align:center;gap:8px}.vs{color:var(--accent);font-weight:900;font-size:18px}.team-name{font-size:12px;font-weight:900;margin-top:6px}.meta{font-size:13px;color:#d9f8fb;text-align:center;margin-top:12px;line-height:1.45}.progress{height:10px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;margin:12px 0}.progress div{height:100%;width:72%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}.row:last-child{border-bottom:none}.status{font-size:12px;color:var(--accent);font-weight:bold;white-space:nowrap}.status-pill{font-size:11px;font-weight:900;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent)}
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(2,10,20,.97);border-top:1px solid color-mix(in srgb,var(--accent) 45%,transparent);display:grid;grid-template-columns:repeat(6,1fr);padding:8px 4px 10px;z-index:10}.nav-btn{background:none;border:none;color:#9fbfc8;font-size:10px;font-weight:bold}.nav-btn span{display:block;font-size:20px;margin-bottom:3px}.nav-btn.active{color:var(--accent)}
-.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.club-card{min-height:196px;padding:12px 8px;border-radius:20px;text-align:center;overflow:hidden;border:1.5px solid var(--club1);background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--club1) 30%,transparent),transparent 43%),linear-gradient(160deg,rgba(255,255,255,.09),rgba(0,0,0,.56)),var(--clubBg);box-shadow:0 0 18px color-mix(in srgb,var(--club1) 32%,transparent)}.club-card.selected{transform:scale(1.025);box-shadow:0 0 30px color-mix(in srgb,var(--club1) 78%,transparent)}.club-name{font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:8px}.hq-icon{width:96px;height:96px;margin:0 auto;display:block}.hq-icon.small-icon{width:58px;height:58px}.hq-icon.mini-icon{width:34px;height:34px}.colour-row{display:flex;justify-content:center;align-items:center;gap:5px;font-size:10px;color:white;margin-top:8px}.dot{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,.7)}.team-mini{display:flex;align-items:center;gap:8px}.profile-team{display:flex;align-items:center;gap:12px}
-.wallet-card{border-left:4px solid var(--accent)}.atmosphere{height:9px;background:rgba(255,255,255,.12);border-radius:999px;overflow:hidden;width:86px}.atmosphere span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}.chat-bubble{padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.08);margin-top:10px;font-size:13px;color:#e8fbff}.chat-bubble b{color:var(--accent)}
-@media(min-width:750px){.app{border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Away Day HQ App</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+:root{
+  --accent:#18D6C7;
+  --accent2:#0A8F88;
+  --bg:#020b14;
+  --card:#061a33;
+}
+
+body{
+  background:var(--bg);
+  color:white;
+  min-height:100vh;
+}
+
+.app{
+  max-width:430px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:18px 14px 90px;
+  background:
+    linear-gradient(rgba(2,10,20,.88),rgba(2,10,20,.96)),
+    url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1200&q=80");
+  background-size:cover;
+  background-position:center;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+  box-shadow:0 0 25px rgba(24,214,199,.35);
+}
+
+.brand{
+  text-align:right;
+}
+
+.brand h1{
+  font-size:22px;
+  line-height:1;
+}
+
+.brand span{
+  color:var(--accent);
+}
+
+.brand p{
+  font-size:11px;
+  color:#c8f7f3;
+  margin-top:4px;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.card{
+  background:rgba(6,26,51,.82);
+  border:1px solid rgba(24,214,199,.35);
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:14px;
+  backdrop-filter:blur(8px);
+}
+
+.small{
+  font-size:12px;
+  color:#bdecea;
+  margin-bottom:6px;
+}
+
+.title{
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  font-size:14px;
+  line-height:1.45;
+  color:#e8fbff;
+}
+
+.button{
+  display:block;
+  width:100%;
+  border:none;
+  background:var(--accent);
+  color:#061A33;
+  padding:14px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:900;
+  margin-top:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.tile{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(24,214,199,.25);
+  border-radius:16px;
+  padding:14px 10px;
+}
+
+.tile strong{
+  display:block;
+  font-size:14px;
+  margin-top:6px;
+}
+
+.fixture{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.badge{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#061A33;
+  border:2px solid white;
+}
+
+.vs{
+  color:var(--accent);
+  font-weight:900;
+}
+
+.progress{
+  height:10px;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress div{
+  height:100%;
+  width:72%;
+  background:var(--accent);
+}
+
+.wallet-row,
+.chat-row,
+.zone-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.wallet-row:last-child,
+.chat-row:last-child,
+.zone-row:last-child{
+  border-bottom:none;
+}
+
+.status{
+  font-size:12px;
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:430px;
+  background:rgba(2,10,20,.96);
+  border-top:1px solid rgba(24,214,199,.3);
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  padding:8px 4px 10px;
+  z-index:10;
+}
+
+.nav-btn{
+  background:none;
+  border:none;
+  color:#9fbfc8;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.nav-btn span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:var(--accent);
+}
+
+.team-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.profile-logo{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+}
+
+@media(min-width:750px){
+  .app{border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
   <div class="header">
-    <div class="logo-wrap">
-      <img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ">
-      <div id="headerTeamBadge" class="team-hq"></div>
-    </div>
+    <img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ">
     <div class="brand">
       <h1>AWAY DAY <span>HQ</span></h1>
       <p>Plan it. Experience it. Remember it.</p>
-      <div class="supporting">Supporting: <b id="supportingTeam">Warrington</b></div>
     </div>
   </div>
 
+  <!-- HOME -->
   <section id="home" class="screen active">
-    <div class="card glow-card">
-      <div class="small">MATCHDAY HQ</div>
-      <div class="title" id="homeTeamTitle">Warrington Wolves</div>
-      <div class="subtitle">Your matchday companion, themed around your club colours.</div>
-      <button class="button" onclick="showScreenById('profile')">Change Team Colours</button>
-    </div>
     <div class="card">
       <div class="small">NEXT MATCH</div>
-      <div class="match-card">
-        <div class="match-teams"><div><div id="homeBadge"></div><div class="team-name" id="homeShort">Warrington</div></div><div class="vs">V</div><div><div id="saintsBadgeHome"></div><div class="team-name">Saints</div></div></div>
-        <div class="meta">Saturday â€¢ 3:00pm<br>Halliwell Jones Stadium</div>
-        <button class="button">Open Match Planner</button>
+      <div class="fixture">
+        <div>
+          <div class="badge">🐺</div>
+          <div class="small">Warrington</div>
+        </div>
+        <div class="vs">V</div>
+        <div>
+          <div class="badge">🔻</div>
+          <div class="small">Saints</div>
+        </div>
+      </div>
+      <div class="title" style="margin-top:14px;">Warrington v St Helens</div>
+      <div class="subtitle">Saturday • 3:00pm • Halliwell Jones Stadium</div>
+      <button class="button">Open Match Planner</button>
+    </div>
+
+    <div class="card">
+      <div class="small">MATCHDAY READY</div>
+      <div class="title">72%</div>
+      <div class="progress"><div></div></div>
+      <div class="subtitle">Tickets, food and fan zones added. Parking still needs sorting.</div>
+    </div>
+
+    <div class="grid">
+      <div class="tile">🎒<strong>Wallet</strong></div>
+      <div class="tile">🔥<strong>Fan Zones</strong></div>
+      <div class="tile">🍔<strong>Eat & Drink</strong></div>
+      <div class="tile">💬<strong>Chat</strong></div>
+    </div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" class="screen">
+    <div class="card">
+      <div class="small">UPCOMING FIXTURES</div>
+      <div class="title">Your Matches</div>
+      <div class="wallet-row"><span>Warrington v Saints</span><span class="status">Home</span></div>
+      <div class="wallet-row"><span>Leigh v Warrington</span><span class="status">Away</span></div>
+      <div class="wallet-row"><span>Warrington v Leeds</span><span class="status">Home</span></div>
+      <div class="wallet-row"><span>Catalans v Warrington</span><span class="status">Away</span></div>
+    </div>
+  </section>
+
+  <!-- WALLET -->
+  <section id="wallet" class="screen">
+    <div class="card">
+      <div class="small">AWAY DAY WALLET</div>
+      <div class="title">Leigh Away</div>
+      <div class="subtitle">Everything for your next away day in one place.</div>
+
+      <div class="wallet-row"><span>🎟 Match Ticket</span><span class="status">Added</span></div>
+      <div class="wallet-row"><span>🚌 Supporters Coach</span><span class="status">Added</span></div>
+      <div class="wallet-row"><span>🚆 Train Option</span><span class="status">Compare</span></div>
+      <div class="wallet-row"><span>🚗 Parking</span><span class="status">Needed</span></div>
+      <div class="wallet-row"><span>🍺 Meet-up</span><span class="status">Railway Pub</span></div>
+    </div>
+  </section>
+
+  <!-- FAN ZONES -->
+  <section id="zones" class="screen">
+    <div class="card">
+      <div class="small">FAN ZONES</div>
+      <div class="title">Where's the atmosphere?</div>
+      <div class="subtitle">No live tracking. No exact numbers. Just safe venue-based atmosphere levels.</div>
+
+      <div class="zone-row"><span>🔥 The Railway</span><span class="status">Electric</span></div>
+      <div class="zone-row"><span>🟠 Town Centre</span><span class="status">Busy</span></div>
+      <div class="zone-row"><span>🟡 Stadium Fan Bar</span><span class="status">Building</span></div>
+      <div class="zone-row"><span>🟢 Family Zone</span><span class="status">Quiet</span></div>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section id="chat" class="screen">
+    <div class="card">
+      <div class="small">CHAT</div>
+      <div class="title">Matchday Community</div>
+
+      <div class="chat-row"><span>🐺 Warrington Chat</span><span class="status">Live</span></div>
+      <div class="chat-row"><span>🏉 Warrington v Saints</span><span class="status">Match Chat</span></div>
+      <div class="chat-row"><span>🚌 Leigh Away Group</span><span class="status">Trip Chat</span></div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="screen">
+    <div class="card team-card">
+      <img class="profile-logo" src="IMG_3227.jpeg" alt="Away Day HQ">
+      <div>
+        <div class="small">YOUR CLUB</div>
+        <div class="title">Warrington Wolves</div>
+        <div class="subtitle">Primrose & Blue theme active</div>
       </div>
     </div>
-    <div class="card"><div class="small">MATCHDAY READY</div><div class="title">72%</div><div class="progress"><div></div></div><div class="subtitle">Tickets, food and fan zones added. Parking still needs sorting.</div></div>
-    <div class="grid"><div class="tile"><span>ðŸŽ’</span><strong>Wallet</strong></div><div class="tile"><span>ðŸ”¥</span><strong>Fan Zones</strong></div><div class="tile"><span>ðŸ”</span><strong>Eat & Drink</strong></div><div class="tile"><span>ðŸ’¬</span><strong>Chat</strong></div></div>
+
+    <div class="card">
+      <div class="small">MEMORIES</div>
+      <div class="wallet-row"><span>Warrington 28–18 Leigh</span><span class="status">Win</span></div>
+      <div class="wallet-row"><span>Hull KR 24–20 Warrington</span><span class="status">Loss</span></div>
+      <div class="wallet-row"><span>Catalans 12–30 Warrington</span><span class="status">Win</span></div>
+    </div>
   </section>
 
-  <section id="fixtures" class="screen">
-    <div class="card"><div class="small">UPCOMING FIXTURES</div><div class="title">Your Matches</div><div id="fixturesList"></div></div>
-  </section>
-
-  <section id="wallet" class="screen">
-    <div class="card glow-card wallet-card"><div class="small">AWAY DAY WALLET</div><div class="title">Leigh Away</div><div class="subtitle">Everything for your next away day in one place.</div><div class="progress"><div style="width:68%"></div></div></div>
-    <div class="card"><div class="row"><span>ðŸŽŸ Match Ticket</span><span class="status">Added</span></div><div class="row"><span>ðŸšŒ Supporters Coach</span><span class="status">Added</span></div><div class="row"><span>ðŸš† Train Option</span><span class="status">Compare</span></div><div class="row"><span>ðŸš— Parking</span><span class="status">Needed</span></div><div class="row"><span>ðŸº Meet-up</span><span class="status">Railway Pub</span></div></div>
-  </section>
-
-  <section id="zones" class="screen">
-    <div class="card"><div class="small">FAN ZONES</div><div class="title">Where's the atmosphere?</div><div class="subtitle">No live tracking. No exact numbers. Just safe venue-based atmosphere levels.</div></div>
-    <div class="card"><div class="row"><span>ðŸ”¥ The Railway</span><div class="atmosphere"><span style="width:96%"></span></div><span class="status">Electric</span></div><div class="row"><span>ðŸŸ  Town Centre</span><div class="atmosphere"><span style="width:76%"></span></div><span class="status">Busy</span></div><div class="row"><span>ðŸŸ¡ Stadium Fan Bar</span><div class="atmosphere"><span style="width:54%"></span></div><span class="status">Building</span></div><div class="row"><span>ðŸŸ¢ Family Zone</span><div class="atmosphere"><span style="width:28%"></span></div><span class="status">Quiet</span></div></div>
-  </section>
-
-  <section id="chat" class="screen">
-    <div class="card"><div class="small">CHAT</div><div class="title">Matchday Community</div><div class="row"><span id="clubChat">Club Chat</span><span class="status">Live</span></div><div class="row"><span>ðŸ‰ Warrington v Saints</span><span class="status">Match Chat</span></div><div class="row"><span>ðŸšŒ Leigh Away Group</span><span class="status">Trip Chat</span></div><div class="chat-bubble"><b>Safety first:</b> reporting, blocking and moderation will be built into chat from day one.</div></div>
-  </section>
-
-  <section id="profile" class="screen">
-    <div class="card profile-team glow-card"><div id="profileBadge"></div><div><div class="small">YOUR CLUB</div><div class="title" id="profileTeam">Warrington Wolves</div><div class="subtitle" id="profileColours">Primrose & Blue theme active</div></div></div>
-    <div class="card"><div class="small">SELECT YOUR TEAM</div><div class="title">Club Colours</div><div class="subtitle" style="margin-bottom:14px;">Custom Away Day HQ icons. These are used everywhere in the app.</div><div class="team-grid" id="teamGrid"></div></div>
-  </section>
 </div>
-<nav class="bottom-nav"><button class="nav-btn active" onclick="showScreen('home', this)"><span>ðŸ </span>Home</button><button class="nav-btn" onclick="showScreen('fixtures', this)"><span>ðŸ“…</span>Fixtures</button><button class="nav-btn" onclick="showScreen('wallet', this)"><span>ðŸŽ’</span>Wallet</button><button class="nav-btn" onclick="showScreen('zones', this)"><span>ðŸ”¥</span>Zones</button><button class="nav-btn" onclick="showScreen('chat', this)"><span>ðŸ’¬</span>Chat</button><button class="nav-btn" onclick="showScreen('profile', this)"><span>ðŸ‘¤</span>Profile</button></nav>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showScreen('home', this)"><span>🏠</span>Home</button>
+  <button class="nav-btn" onclick="showScreen('fixtures', this)"><span>📅</span>Fixtures</button>
+  <button class="nav-btn" onclick="showScreen('wallet', this)"><span>🎒</span>Wallet</button>
+  <button class="nav-btn" onclick="showScreen('zones', this)"><span>🔥</span>Zones</button>
+  <button class="nav-btn" onclick="showScreen('chat', this)"><span>💬</span>Chat</button>
+  <button class="nav-btn" onclick="showScreen('profile', this)"><span>👤</span>Profile</button>
+</nav>
+
 <script>
-const teams=[
-{id:'warrington',name:'WARRINGTON WOLVES',short:'Warrington',mark:'wolf',c1:'#F5C400',c2:'#0057B8',label:'PRIMROSE & BLUE',bg:'#031B3D'},
-{id:'saints',name:'ST HELENS',short:'Saints',mark:'v',c1:'#FFFFFF',c2:'#E30613',label:'WHITE & RED',bg:'#3B0508'},
-{id:'wigan',name:'WIGAN WARRIORS',short:'Wigan',mark:'hoops',c1:'#8A1538',c2:'#FFFFFF',label:'CHERRY & WHITE',bg:'#330613'},
-{id:'leeds',name:'LEEDS RHINOS',short:'Leeds',mark:'rhino',c1:'#0057B8',c2:'#F5C400',label:'BLUE & GOLD',bg:'#031B3D'},
-{id:'catalans',name:'CATALANS DRAGONS',short:'Catalans',mark:'dragon',c1:'#E1251B',c2:'#FFD100',label:'RED & YELLOW',bg:'#3B0805'},
-{id:'hullfc',name:'HULL FC',short:'Hull FC',mark:'fc',c1:'#111111',c2:'#FFFFFF',label:'BLACK & WHITE',bg:'#05080C'},
-{id:'hullkr',name:'HULL KR',short:'Hull KR',mark:'kr',c1:'#E30613',c2:'#FFFFFF',label:'RED & WHITE',bg:'#3B0508'},
-{id:'castleford',name:'CASTLEFORD TIGERS',short:'Castleford',mark:'tiger',c1:'#FF7900',c2:'#111111',label:'ORANGE & BLACK',bg:'#1A1208'},
-{id:'wakefield',name:'WAKEFIELD TRINITY',short:'Wakefield',mark:'wt',c1:'#1B4DB3',c2:'#FFFFFF',label:'ROYAL BLUE & WHITE',bg:'#031B3D'},
-{id:'huddersfield',name:'HUDDERSFIELD GIANTS',short:'Huddersfield',mark:'hg',c1:'#7A1F3D',c2:'#F5A623',label:'CLARET & AMBER',bg:'#2B0814'},
-{id:'toulouse',name:'TOULOUSE OLYMPIQUE',short:'Toulouse',mark:'to',c1:'#001F54',c2:'#FFFFFF',label:'NAVY & WHITE',bg:'#021326'},
-{id:'leigh',name:'LEIGH LEOPARDS',short:'Leigh',mark:'leopard',c1:'#111111',c2:'#E30613',label:'BLACK, WHITE & RED',bg:'#05080C'}];
-function team(id){return teams.find(t=>t.id===id)}
-function iconMarkup(t,cls='hq-icon'){let mark='';
- if(t.mark==='wolf')mark='<path d="M32 58 L44 22 L55 43 L70 25 L67 64 L50 77 Z" fill="white" opacity=".95"/><path d="M43 51 L54 47 L50 58 Z" fill="'+t.c2+'"/><circle cx="57" cy="47" r="3" fill="'+t.c2+'"/>';
- else if(t.mark==='v')mark='<path d="M25 20 L50 78 L75 20 L62 20 L50 52 L38 20 Z" fill="'+t.c2+'"/><path d="M34 20 L50 60 L66 20" fill="none" stroke="white" stroke-width="5"/>';
- else if(t.mark==='hoops')mark='<rect x="24" y="26" width="52" height="10" fill="white"/><rect x="24" y="45" width="52" height="10" fill="white"/><rect x="24" y="64" width="52" height="10" fill="white"/><text x="50" y="59" text-anchor="middle" font-size="20" font-weight="900" fill="'+t.c1+'">W</text>';
- else if(t.mark==='rhino')mark='<path d="M22 57 C34 32 69 34 77 55 L66 54 L58 69 L40 70 L35 61 Z" fill="white"/><path d="M69 43 L84 34 L74 51 Z" fill="'+t.c2+'"/><circle cx="62" cy="49" r="3" fill="'+t.c1+'"/>';
- else if(t.mark==='dragon')mark='<path d="M28 67 C36 32 66 29 78 45 C62 42 58 53 69 62 C54 64 44 70 28 67 Z" fill="'+t.c2+'"/><path d="M56 33 L63 18 L66 36 Z" fill="white"/><circle cx="63" cy="44" r="3" fill="'+t.c1+'"/>';
- else if(t.mark==='tiger')mark='<circle cx="50" cy="51" r="27" fill="'+t.c1+'"/><path d="M29 39 L43 47 M71 39 L57 47 M36 66 L45 56 M64 66 L55 56" stroke="'+t.c2+'" stroke-width="5"/><circle cx="41" cy="49" r="3"/><circle cx="59" cy="49" r="3"/>';
- else if(t.mark==='leopard')mark='<circle cx="50" cy="51" r="27" fill="white"/><circle cx="39" cy="43" r="4" fill="'+t.c2+'"/><circle cx="59" cy="43" r="4" fill="'+t.c2+'"/><circle cx="48" cy="57" r="4" fill="'+t.c2+'"/><path d="M36 66 C45 73 58 73 66 66" fill="none" stroke="'+t.c2+'" stroke-width="4"/>';
- else {let txt=t.mark.toUpperCase();mark='<text x="50" y="60" text-anchor="middle" font-size="28" font-weight="900" fill="white">'+txt+'</text>'}
- return `<svg class="${cls}" viewBox="0 0 100 100" aria-label="${t.name} HQ icon"><defs><linearGradient id="g-${t.id}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${t.c1}"/><stop offset="1" stop-color="${t.c2}"/></linearGradient></defs><path d="M50 5 L84 18 L84 55 C84 76 67 91 50 96 C33 91 16 76 16 55 L16 18 Z" fill="url(#g-${t.id})" stroke="white" stroke-width="4"/><path d="M25 84 Q50 97 75 84" fill="none" stroke="${t.c2}" stroke-width="6" opacity=".9"/>${mark}</svg>`}
-function buildTeamGrid(){const grid=document.getElementById('teamGrid');grid.innerHTML='';teams.forEach(t=>{const card=document.createElement('div');card.className='club-card';card.id='team-'+t.id;card.style.setProperty('--club1',t.c1);card.style.setProperty('--club2',t.c2);card.style.setProperty('--clubBg',t.bg);card.innerHTML=`<div class="club-name">${t.name}</div>${iconMarkup(t)}<div class="colour-row"><span class="dot" style="background:${t.c1}"></span><span class="dot" style="background:${t.c2}"></span><span>${t.label}</span></div>`;card.onclick=()=>selectTeam(t.id);grid.appendChild(card)})}
-function fixtureRow(home,away,type,venue){const h=team(home),a=team(away);return `<div class="match-card"><div class="match-teams"><div>${iconMarkup(h,'hq-icon small-icon')}<div class="team-name">${h.short}</div></div><div class="vs">V</div><div>${iconMarkup(a,'hq-icon small-icon')}<div class="team-name">${a.short}</div></div></div><div class="meta">Saturday â€¢ 3:00pm<br>${venue}</div><button class="button secondary">Plan Away Day</button><div style="text-align:center;margin-top:10px"><span class="status-pill">${type}</span></div></div>`}
-function buildFixtures(){document.getElementById('fixturesList').innerHTML=fixtureRow('warrington','saints','Home','Halliwell Jones Stadium')+fixtureRow('leigh','warrington','Away','Leigh Sports Village')+fixtureRow('warrington','leeds','Home','Halliwell Jones Stadium')+fixtureRow('catalans','warrington','Away','Stade Gilbert Brutus')}
-function selectTeam(id){const t=team(id);if(!t)return;localStorage.setItem('awayDayTeam',t.id);document.documentElement.style.setProperty('--accent',t.c1);document.documentElement.style.setProperty('--accent2',t.c2);document.getElementById('supportingTeam').innerText=t.short;document.getElementById('headerTeamBadge').innerHTML=iconMarkup(t,'hq-icon small-icon');document.getElementById('profileTeam').innerText=t.name;document.getElementById('profileColours').innerText=t.label+' theme active';document.getElementById('profileBadge').innerHTML=iconMarkup(t,'hq-icon small-icon');document.getElementById('homeTeamTitle').innerText=t.name;document.getElementById('homeBadge').innerHTML=iconMarkup(t,'hq-icon small-icon');document.getElementById('homeShort').innerText=t.short;document.getElementById('clubChat').innerText=t.short+' Club Chat';document.getElementById('saintsBadgeHome').innerHTML=iconMarkup(team('saints'),'hq-icon small-icon');document.querySelectorAll('.club-card').forEach(c=>c.classList.remove('selected'));const selected=document.getElementById('team-'+t.id);if(selected)selected.classList.add('selected')}
-function showScreen(screenId,button){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(screenId).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));button.classList.add('active')}
-function showScreenById(screenId){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(screenId).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));const buttons=document.querySelectorAll('.nav-btn');const index=['home','fixtures','wallet','zones','chat','profile'].indexOf(screenId);if(buttons[index])buttons[index].classList.add('active')}
-buildTeamGrid();buildFixtures();selectTeam(localStorage.getItem('awayDayTeam')||'warrington');
+function showScreen(screenId, button){
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+
+  document.getElementById(screenId).classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+}
 </script>
+
 </body>
 </html>
