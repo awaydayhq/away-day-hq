@@ -3,179 +3,396 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Away Day HQ</title>
+<title>Away Day HQ App</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 
+:root{
+  --accent:#18D6C7;
+  --accent2:#0A8F88;
+  --bg:#020b14;
+  --card:#061a33;
+}
+
 body{
+  background:var(--bg);
+  color:white;
+  min-height:100vh;
+}
+
+.app{
+  max-width:430px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:18px 14px 90px;
   background:
-    linear-gradient(rgba(2,10,20,.78),rgba(2,10,20,.96)),
-    url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1600&q=80");
+    linear-gradient(rgba(2,10,20,.88),rgba(2,10,20,.96)),
+    url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1200&q=80");
   background-size:cover;
   background-position:center;
-  color:white;
-  text-align:center;
-  padding:22px 14px;
 }
 
-.wrap{max-width:850px;margin:auto}
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
 
 .logo{
-  width:340px;
-  max-width:92%;
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+  box-shadow:0 0 25px rgba(24,214,199,.35);
+}
+
+.brand{
+  text-align:right;
+}
+
+.brand h1{
+  font-size:22px;
+  line-height:1;
+}
+
+.brand span{
+  color:var(--accent);
+}
+
+.brand p{
+  font-size:11px;
+  color:#c8f7f3;
+  margin-top:4px;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
   display:block;
-  margin:0 auto 18px;
-  border-radius:26px;
-  box-shadow:0 0 45px rgba(24,214,199,.45);
-}
-
-h1{
-  font-size:58px;
-  line-height:.95;
-  font-weight:900;
-  margin-bottom:14px;
-}
-
-.hq{color:#18D6C7;display:block}
-
-.tagline{
-  font-size:18px;
-  font-weight:900;
-  color:#18D6C7;
-  letter-spacing:1px;
-  margin-bottom:10px;
-}
-
-.promise{
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:16px;
-}
-
-.description{
-  font-size:17px;
-  line-height:1.55;
-  max-width:680px;
-  margin:0 auto 20px;
-}
-
-.button{
-  display:inline-block;
-  padding:14px 42px;
-  border:2px solid #18D6C7;
-  color:#18D6C7;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:21px;
-  font-weight:900;
-  margin-bottom:24px;
-  box-shadow:0 0 20px rgba(24,214,199,.35);
-}
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
 }
 
 .card{
-  background:rgba(6,26,51,.76);
-  border:1px solid rgba(24,214,199,.45);
+  background:rgba(6,26,51,.82);
+  border:1px solid rgba(24,214,199,.35);
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:14px;
+  backdrop-filter:blur(8px);
+}
+
+.small{
+  font-size:12px;
+  color:#bdecea;
+  margin-bottom:6px;
+}
+
+.title{
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  font-size:14px;
+  line-height:1.45;
+  color:#e8fbff;
+}
+
+.button{
+  display:block;
+  width:100%;
+  border:none;
+  background:var(--accent);
+  color:#061A33;
+  padding:14px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:900;
+  margin-top:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.tile{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(24,214,199,.25);
   border-radius:16px;
   padding:14px 10px;
 }
 
-.icon{font-size:30px;margin-bottom:6px}
-
-.card strong{
+.tile strong{
   display:block;
-  color:white;
   font-size:14px;
-  margin-bottom:5px;
+  margin-top:6px;
 }
 
-.card p{
+.fixture{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.badge{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#061A33;
+  border:2px solid white;
+}
+
+.vs{
+  color:var(--accent);
+  font-weight:900;
+}
+
+.progress{
+  height:10px;
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  overflow:hidden;
+  margin:12px 0;
+}
+
+.progress div{
+  height:100%;
+  width:72%;
+  background:var(--accent);
+}
+
+.wallet-row,
+.chat-row,
+.zone-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.wallet-row:last-child,
+.chat-row:last-child,
+.zone-row:last-child{
+  border-bottom:none;
+}
+
+.status{
   font-size:12px;
-  line-height:1.3;
-  color:#EAFBFF;
-}
-
-.footer{
-  margin-top:18px;
-  color:#18D6C7;
-  font-size:18px;
+  color:var(--accent);
   font-weight:bold;
 }
 
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:430px;
+  background:rgba(2,10,20,.96);
+  border-top:1px solid rgba(24,214,199,.3);
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  padding:8px 4px 10px;
+  z-index:10;
+}
+
+.nav-btn{
+  background:none;
+  border:none;
+  color:#9fbfc8;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.nav-btn span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+.nav-btn.active{
+  color:var(--accent);
+}
+
+.team-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.profile-logo{
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  object-fit:cover;
+}
+
 @media(min-width:750px){
-  .features{grid-template-columns:repeat(3,1fr)}
-  h1{font-size:72px}
-  .logo{width:380px}
+  .app{border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
 }
 </style>
 </head>
 
 <body>
-<div class="wrap">
 
-<img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ Logo">
+<div class="app">
 
-<h1>AWAY DAY <span class="hq">HQ</span></h1>
+  <div class="header">
+    <img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ">
+    <div class="brand">
+      <h1>AWAY DAY <span>HQ</span></h1>
+      <p>Plan it. Experience it. Remember it.</p>
+    </div>
+  </div>
 
-<div class="tagline">PLAN IT. &nbsp; EXPERIENCE IT. &nbsp; REMEMBER IT.</div>
+  <!-- HOME -->
+  <section id="home" class="screen active">
+    <div class="card">
+      <div class="small">NEXT MATCH</div>
+      <div class="fixture">
+        <div>
+          <div class="badge">🐺</div>
+          <div class="small">Warrington</div>
+        </div>
+        <div class="vs">V</div>
+        <div>
+          <div class="badge">🔻</div>
+          <div class="small">Saints</div>
+        </div>
+      </div>
+      <div class="title" style="margin-top:14px;">Warrington v St Helens</div>
+      <div class="subtitle">Saturday • 3:00pm • Halliwell Jones Stadium</div>
+      <button class="button">Open Match Planner</button>
+    </div>
 
-<div class="promise">BUILT BY FANS. FOR FANS.</div>
+    <div class="card">
+      <div class="small">MATCHDAY READY</div>
+      <div class="title">72%</div>
+      <div class="progress"><div></div></div>
+      <div class="subtitle">Tickets, food and fan zones added. Parking still needs sorting.</div>
+    </div>
 
-<div class="description">
-Plan your trip, store your tickets, discover fan zones, find the best places to eat and drink, organise your away day, and relive every unforgettable matchday memory.
+    <div class="grid">
+      <div class="tile">🎒<strong>Wallet</strong></div>
+      <div class="tile">🔥<strong>Fan Zones</strong></div>
+      <div class="tile">🍔<strong>Eat & Drink</strong></div>
+      <div class="tile">💬<strong>Chat</strong></div>
+    </div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" class="screen">
+    <div class="card">
+      <div class="small">UPCOMING FIXTURES</div>
+      <div class="title">Your Matches</div>
+      <div class="wallet-row"><span>Warrington v Saints</span><span class="status">Home</span></div>
+      <div class="wallet-row"><span>Leigh v Warrington</span><span class="status">Away</span></div>
+      <div class="wallet-row"><span>Warrington v Leeds</span><span class="status">Home</span></div>
+      <div class="wallet-row"><span>Catalans v Warrington</span><span class="status">Away</span></div>
+    </div>
+  </section>
+
+  <!-- WALLET -->
+  <section id="wallet" class="screen">
+    <div class="card">
+      <div class="small">AWAY DAY WALLET</div>
+      <div class="title">Leigh Away</div>
+      <div class="subtitle">Everything for your next away day in one place.</div>
+
+      <div class="wallet-row"><span>🎟 Match Ticket</span><span class="status">Added</span></div>
+      <div class="wallet-row"><span>🚌 Supporters Coach</span><span class="status">Added</span></div>
+      <div class="wallet-row"><span>🚆 Train Option</span><span class="status">Compare</span></div>
+      <div class="wallet-row"><span>🚗 Parking</span><span class="status">Needed</span></div>
+      <div class="wallet-row"><span>🍺 Meet-up</span><span class="status">Railway Pub</span></div>
+    </div>
+  </section>
+
+  <!-- FAN ZONES -->
+  <section id="zones" class="screen">
+    <div class="card">
+      <div class="small">FAN ZONES</div>
+      <div class="title">Where's the atmosphere?</div>
+      <div class="subtitle">No live tracking. No exact numbers. Just safe venue-based atmosphere levels.</div>
+
+      <div class="zone-row"><span>🔥 The Railway</span><span class="status">Electric</span></div>
+      <div class="zone-row"><span>🟠 Town Centre</span><span class="status">Busy</span></div>
+      <div class="zone-row"><span>🟡 Stadium Fan Bar</span><span class="status">Building</span></div>
+      <div class="zone-row"><span>🟢 Family Zone</span><span class="status">Quiet</span></div>
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section id="chat" class="screen">
+    <div class="card">
+      <div class="small">CHAT</div>
+      <div class="title">Matchday Community</div>
+
+      <div class="chat-row"><span>🐺 Warrington Chat</span><span class="status">Live</span></div>
+      <div class="chat-row"><span>🏉 Warrington v Saints</span><span class="status">Match Chat</span></div>
+      <div class="chat-row"><span>🚌 Leigh Away Group</span><span class="status">Trip Chat</span></div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="screen">
+    <div class="card team-card">
+      <img class="profile-logo" src="IMG_3227.jpeg" alt="Away Day HQ">
+      <div>
+        <div class="small">YOUR CLUB</div>
+        <div class="title">Warrington Wolves</div>
+        <div class="subtitle">Primrose & Blue theme active</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="small">MEMORIES</div>
+      <div class="wallet-row"><span>Warrington 28–18 Leigh</span><span class="status">Win</span></div>
+      <div class="wallet-row"><span>Hull KR 24–20 Warrington</span><span class="status">Loss</span></div>
+      <div class="wallet-row"><span>Catalans 12–30 Warrington</span><span class="status">Win</span></div>
+    </div>
+  </section>
+
 </div>
 
-<a class="button" href="#">LAUNCHING SOON</a>
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showScreen('home', this)"><span>🏠</span>Home</button>
+  <button class="nav-btn" onclick="showScreen('fixtures', this)"><span>📅</span>Fixtures</button>
+  <button class="nav-btn" onclick="showScreen('wallet', this)"><span>🎒</span>Wallet</button>
+  <button class="nav-btn" onclick="showScreen('zones', this)"><span>🔥</span>Zones</button>
+  <button class="nav-btn" onclick="showScreen('chat', this)"><span>💬</span>Chat</button>
+  <button class="nav-btn" onclick="showScreen('profile', this)"><span>👤</span>Profile</button>
+</nav>
 
-<div class="features">
+<script>
+function showScreen(screenId, button){
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
 
-<div class="card">
-<div class="icon">🏠</div>
-<strong>HOME MATCH PLANNER</strong>
-<p>Everything for home fixtures in one place.</p>
-</div>
+  document.getElementById(screenId).classList.add('active');
 
-<div class="card">
-<div class="icon">🎒</div>
-<strong>AWAY DAY WALLET</strong>
-<p>Tickets, hotels, trains, coaches and parking.</p>
-</div>
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
 
-<div class="card">
-<div class="icon">🔥</div>
-<strong>FAN ZONES</strong>
-<p>Discover where supporters gather before kick-off.</p>
-</div>
+  button.classList.add('active');
+}
+</script>
 
-<div class="card">
-<div class="icon">🍔</div>
-<strong>EAT & DRINK</strong>
-<p>Supporter-recommended pubs and food.</p>
-</div>
-
-<div class="card">
-<div class="icon">📸</div>
-<strong>AWAY DAY MEMORIES</strong>
-<p>Save photos, videos and every away day.</p>
-</div>
-
-<div class="card">
-<div class="icon">🎨</div>
-<strong>CLUB COLOURS</strong>
-<p>Watch the app change to your team's colours.</p>
-</div>
-
-</div>
-
-<div class="footer">awaydayhq.com</div>
-
-</div>
 </body>
 </html>
