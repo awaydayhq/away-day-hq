@@ -27,7 +27,7 @@ body{
   min-height:100vh;
   padding:18px 14px 90px;
   background:
-    linear-gradient(rgba(2,10,20,.88),rgba(2,10,20,.96)),
+    linear-gradient(rgba(2,10,20,.88),rgba(2,10,20,.97)),
     url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1200&q=80");
   background-size:cover;
   background-position:center;
@@ -41,25 +41,22 @@ body{
 }
 
 .logo{
-  width:72px;
-  height:72px;
+  width:70px;
+  height:70px;
   border-radius:18px;
   object-fit:cover;
-  box-shadow:0 0 25px rgba(24,214,199,.35);
+  box-shadow:0 0 26px var(--accent);
 }
 
-.brand{
-  text-align:right;
-}
+.brand{text-align:right}
 
 .brand h1{
   font-size:22px;
   line-height:1;
+  font-weight:900;
 }
 
-.brand span{
-  color:var(--accent);
-}
+.brand span{color:var(--accent)}
 
 .brand p{
   font-size:11px;
@@ -67,27 +64,30 @@ body{
   margin-top:4px;
 }
 
-.screen{
-  display:none;
-}
-
-.screen.active{
-  display:block;
-}
+.screen{display:none}
+.screen.active{display:block}
 
 .card{
-  background:rgba(6,26,51,.82);
-  border:1px solid rgba(24,214,199,.35);
-  border-radius:20px;
+  background:rgba(6,26,51,.84);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:22px;
   padding:16px;
   margin-bottom:14px;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 24px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.glow-card{
+  border-color:var(--accent);
+  box-shadow:0 0 26px color-mix(in srgb, var(--accent) 38%, transparent);
 }
 
 .small{
   font-size:12px;
   color:#bdecea;
   margin-bottom:6px;
+  letter-spacing:.6px;
+  text-transform:uppercase;
 }
 
 .title{
@@ -106,7 +106,7 @@ body{
   display:block;
   width:100%;
   border:none;
-  background:var(--accent);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
   color:#061A33;
   padding:14px;
   border-radius:999px;
@@ -123,7 +123,7 @@ body{
 
 .tile{
   background:rgba(255,255,255,.08);
-  border:1px solid rgba(24,214,199,.25);
+  border:1px solid rgba(255,255,255,.13);
   border-radius:16px;
   padding:14px 10px;
 }
@@ -141,23 +141,10 @@ body{
   gap:10px;
 }
 
-.badge{
-  width:54px;
-  height:54px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  font-weight:900;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#061A33;
-  border:2px solid white;
-}
-
 .vs{
   color:var(--accent);
   font-weight:900;
+  font-size:22px;
 }
 
 .progress{
@@ -171,22 +158,19 @@ body{
 .progress div{
   height:100%;
   width:72%;
-  background:var(--accent);
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
 }
 
-.wallet-row,
-.chat-row,
-.zone-row{
+.wallet-row,.chat-row,.zone-row,.fixture-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:10px;
   padding:12px 0;
   border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.wallet-row:last-child,
-.chat-row:last-child,
-.zone-row:last-child{
+.wallet-row:last-child,.chat-row:last-child,.zone-row:last-child,.fixture-row:last-child{
   border-bottom:none;
 }
 
@@ -194,6 +178,7 @@ body{
   font-size:12px;
   color:var(--accent);
   font-weight:bold;
+  white-space:nowrap;
 }
 
 .bottom-nav{
@@ -203,8 +188,8 @@ body{
   transform:translateX(-50%);
   width:100%;
   max-width:430px;
-  background:rgba(2,10,20,.96);
-  border-top:1px solid rgba(24,214,199,.3);
+  background:rgba(2,10,20,.97);
+  border-top:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
   display:grid;
   grid-template-columns:repeat(6,1fr);
   padding:8px 4px 10px;
@@ -225,21 +210,130 @@ body{
   margin-bottom:3px;
 }
 
-.nav-btn.active{
-  color:var(--accent);
-}
+.nav-btn.active{color:var(--accent)}
 
-.team-card{
-  display:flex;
-  align-items:center;
+.team-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
   gap:12px;
 }
 
-.profile-logo{
-  width:72px;
-  height:72px;
-  border-radius:18px;
-  object-fit:cover;
+.club-card{
+  min-height:190px;
+  padding:12px 8px;
+  border-radius:20px;
+  text-align:center;
+  overflow:hidden;
+  border:1.5px solid var(--club1);
+  background:
+    radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--club1) 28%, transparent), transparent 42%),
+    linear-gradient(160deg, rgba(255,255,255,.09), rgba(0,0,0,.55)),
+    var(--clubBg);
+  box-shadow:0 0 18px color-mix(in srgb, var(--club1) 32%, transparent);
+}
+
+.club-card.selected{
+  transform:scale(1.025);
+  box-shadow:0 0 30px color-mix(in srgb, var(--club1) 75%, transparent);
+}
+
+.club-name{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin-bottom:8px;
+}
+
+.custom-badge{
+  width:92px;
+  height:92px;
+  margin:0 auto 9px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  background:
+    linear-gradient(145deg,var(--club1) 0 48%,var(--club2) 48% 100%);
+  border:3px solid rgba(255,255,255,.92);
+  box-shadow:0 10px 20px rgba(0,0,0,.5);
+  color:white;
+  font-size:42px;
+  font-weight:900;
+  text-shadow:0 3px 8px rgba(0,0,0,.7);
+}
+
+.custom-badge:after{
+  content:"";
+  position:absolute;
+  bottom:-14px;
+  width:64px;
+  height:28px;
+  border:4px solid var(--club2);
+  border-top:none;
+  border-radius:0 0 60px 60px;
+  opacity:.95;
+}
+
+.badge-text{
+  font-size:26px;
+  letter-spacing:-1px;
+}
+
+.colour-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  font-size:10px;
+  color:white;
+  margin-top:17px;
+}
+
+.dot{
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.7);
+}
+
+.app-badge{
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,var(--accent),var(--accent2));
+  border:2px solid white;
+  font-size:30px;
+  font-weight:900;
+  box-shadow:0 0 18px color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+.team-mini{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mini-badge{
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,var(--accent),var(--accent2));
+  border:1px solid white;
+  font-size:17px;
+  font-weight:900;
+}
+
+.profile-team{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 @media(min-width:750px){
@@ -260,18 +354,24 @@ body{
     </div>
   </div>
 
-  <!-- HOME -->
   <section id="home" class="screen active">
+    <div class="card glow-card">
+      <div class="small">YOUR CLUB</div>
+      <div class="title" id="homeTeamTitle">Warrington Wolves</div>
+      <div class="subtitle">Your matchday HQ is now themed around your club colours.</div>
+      <button class="button" onclick="showScreenById('profile')">Change Team Colours</button>
+    </div>
+
     <div class="card">
       <div class="small">NEXT MATCH</div>
       <div class="fixture">
         <div>
-          <div class="badge">🐺</div>
-          <div class="small">Warrington</div>
+          <div class="app-badge" id="homeBadge">🐺</div>
+          <div class="small" id="homeShort">Warrington</div>
         </div>
         <div class="vs">V</div>
         <div>
-          <div class="badge">🔻</div>
+          <div class="app-badge">V</div>
           <div class="small">Saints</div>
         </div>
       </div>
@@ -295,19 +395,18 @@ body{
     </div>
   </section>
 
-  <!-- FIXTURES -->
   <section id="fixtures" class="screen">
     <div class="card">
       <div class="small">UPCOMING FIXTURES</div>
       <div class="title">Your Matches</div>
-      <div class="wallet-row"><span>Warrington v Saints</span><span class="status">Home</span></div>
-      <div class="wallet-row"><span>Leigh v Warrington</span><span class="status">Away</span></div>
-      <div class="wallet-row"><span>Warrington v Leeds</span><span class="status">Home</span></div>
-      <div class="wallet-row"><span>Catalans v Warrington</span><span class="status">Away</span></div>
+
+      <div class="fixture-row"><div class="team-mini"><span class="mini-badge">🐺</span> Warrington v Saints</div><span class="status">Home</span></div>
+      <div class="fixture-row"><div class="team-mini"><span class="mini-badge">🐆</span> Leigh v Warrington</div><span class="status">Away</span></div>
+      <div class="fixture-row"><div class="team-mini"><span class="mini-badge">🦏</span> Warrington v Leeds</div><span class="status">Home</span></div>
+      <div class="fixture-row"><div class="team-mini"><span class="mini-badge">🐉</span> Catalans v Warrington</div><span class="status">Away</span></div>
     </div>
   </section>
 
-  <!-- WALLET -->
   <section id="wallet" class="screen">
     <div class="card">
       <div class="small">AWAY DAY WALLET</div>
@@ -322,7 +421,6 @@ body{
     </div>
   </section>
 
-  <!-- FAN ZONES -->
   <section id="zones" class="screen">
     <div class="card">
       <div class="small">FAN ZONES</div>
@@ -336,34 +434,32 @@ body{
     </div>
   </section>
 
-  <!-- CHAT -->
   <section id="chat" class="screen">
     <div class="card">
       <div class="small">CHAT</div>
       <div class="title">Matchday Community</div>
 
-      <div class="chat-row"><span>🐺 Warrington Chat</span><span class="status">Live</span></div>
+      <div class="chat-row"><span id="clubChat">🐺 Warrington Chat</span><span class="status">Live</span></div>
       <div class="chat-row"><span>🏉 Warrington v Saints</span><span class="status">Match Chat</span></div>
       <div class="chat-row"><span>🚌 Leigh Away Group</span><span class="status">Trip Chat</span></div>
     </div>
   </section>
 
-  <!-- PROFILE -->
   <section id="profile" class="screen">
-    <div class="card team-card">
-      <img class="profile-logo" src="IMG_3227.jpeg" alt="Away Day HQ">
+    <div class="card profile-team glow-card">
+      <div class="app-badge" id="profileBadge">🐺</div>
       <div>
         <div class="small">YOUR CLUB</div>
-        <div class="title">Warrington Wolves</div>
-        <div class="subtitle">Primrose & Blue theme active</div>
+        <div class="title" id="profileTeam">Warrington Wolves</div>
+        <div class="subtitle" id="profileColours">Primrose & Blue theme active</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="small">MEMORIES</div>
-      <div class="wallet-row"><span>Warrington 28–18 Leigh</span><span class="status">Win</span></div>
-      <div class="wallet-row"><span>Hull KR 24–20 Warrington</span><span class="status">Loss</span></div>
-      <div class="wallet-row"><span>Catalans 12–30 Warrington</span><span class="status">Win</span></div>
+      <div class="small">SELECT YOUR TEAM</div>
+      <div class="title">Club Colours</div>
+      <div class="subtitle" style="margin-bottom:14px;">Custom Away Day HQ-style badges inspired by club colours.</div>
+      <div class="team-grid" id="teamGrid"></div>
     </div>
   </section>
 
@@ -379,19 +475,93 @@ body{
 </nav>
 
 <script>
-function showScreen(screenId, button){
-  document.querySelectorAll('.screen').forEach(screen => {
-    screen.classList.remove('active');
-  });
+const teams = [
+  {id:"warrington", name:"WARRINGTON WOLVES", short:"Warrington", icon:"🐺", c1:"#F5C400", c2:"#0057B8", label:"PRIMROSE & BLUE", bg:"#031B3D"},
+  {id:"saints", name:"ST HELENS", short:"Saints", icon:"V", c1:"#FFFFFF", c2:"#E30613", label:"WHITE & RED", bg:"#3B0508"},
+  {id:"wigan", name:"WIGAN WARRIORS", short:"Wigan", icon:"WW", c1:"#8A1538", c2:"#FFFFFF", label:"CHERRY & WHITE", bg:"#330613"},
+  {id:"leeds", name:"LEEDS RHINOS", short:"Leeds", icon:"🦏", c1:"#0057B8", c2:"#F5C400", label:"BLUE & GOLD", bg:"#031B3D"},
+  {id:"catalans", name:"CATALANS DRAGONS", short:"Catalans", icon:"🐉", c1:"#E1251B", c2:"#FFD100", label:"RED & YELLOW", bg:"#3B0805"},
+  {id:"hullfc", name:"HULL FC", short:"Hull FC", icon:"FC", c1:"#111111", c2:"#FFFFFF", label:"BLACK & WHITE", bg:"#05080C"},
+  {id:"hullkr", name:"HULL KR", short:"Hull KR", icon:"KR", c1:"#E30613", c2:"#FFFFFF", label:"RED & WHITE", bg:"#3B0508"},
+  {id:"castleford", name:"CASTLEFORD TIGERS", short:"Castleford", icon:"🐯", c1:"#FF7900", c2:"#111111", label:"ORANGE & BLACK", bg:"#1A1208"},
+  {id:"wakefield", name:"WAKEFIELD TRINITY", short:"Wakefield", icon:"WT", c1:"#1B4DB3", c2:"#FFFFFF", label:"ROYAL BLUE & WHITE", bg:"#031B3D"},
+  {id:"huddersfield", name:"HUDDERSFIELD GIANTS", short:"Huddersfield", icon:"HG", c1:"#7A1F3D", c2:"#F5A623", label:"CLARET & AMBER", bg:"#2B0814"},
+  {id:"toulouse", name:"TOULOUSE OLYMPIQUE", short:"Toulouse", icon:"TO", c1:"#001F54", c2:"#FFFFFF", label:"NAVY & WHITE", bg:"#021326"},
+  {id:"leigh", name:"LEIGH LEOPARDS", short:"Leigh", icon:"🐆", c1:"#111111", c2:"#E30613", label:"BLACK, WHITE & RED", bg:"#05080C"}
+];
 
+function buildTeamGrid(){
+  const grid = document.getElementById("teamGrid");
+  grid.innerHTML = "";
+
+  teams.forEach(team => {
+    const card = document.createElement("div");
+    card.className = "club-card";
+    card.id = "team-" + team.id;
+    card.style.setProperty("--club1", team.c1);
+    card.style.setProperty("--club2", team.c2);
+    card.style.setProperty("--clubBg", team.bg);
+
+    card.innerHTML = `
+      <div class="club-name">${team.name}</div>
+      <div class="custom-badge">
+        <span class="badge-text">${team.icon}</span>
+      </div>
+      <div class="colour-row">
+        <span class="dot" style="background:${team.c1}"></span>
+        <span class="dot" style="background:${team.c2}"></span>
+        <span>${team.label}</span>
+      </div>
+    `;
+
+    card.onclick = () => selectTeam(team.id);
+    grid.appendChild(card);
+  });
+}
+
+function selectTeam(teamId){
+  const team = teams.find(t => t.id === teamId);
+  if(!team) return;
+
+  localStorage.setItem("awayDayTeam", team.id);
+
+  document.documentElement.style.setProperty("--accent", team.c1);
+  document.documentElement.style.setProperty("--accent2", team.c2);
+
+  document.getElementById("profileTeam").innerText = team.name;
+  document.getElementById("profileColours").innerText = team.label + " theme active";
+  document.getElementById("profileBadge").innerText = team.icon;
+
+  document.getElementById("homeTeamTitle").innerText = team.name;
+  document.getElementById("homeBadge").innerText = team.icon;
+  document.getElementById("homeShort").innerText = team.short;
+  document.getElementById("clubChat").innerText = team.icon + " " + team.short + " Chat";
+
+  document.querySelectorAll(".club-card").forEach(card => card.classList.remove("selected"));
+  const selected = document.getElementById("team-" + team.id);
+  if(selected) selected.classList.add("selected");
+}
+
+function showScreen(screenId, button){
+  document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
 
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
   button.classList.add('active');
 }
+
+function showScreenById(screenId){
+  document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+  const buttons = document.querySelectorAll('.nav-btn');
+  const index = ["home","fixtures","wallet","zones","chat","profile"].indexOf(screenId);
+  if(buttons[index]) buttons[index].classList.add("active");
+}
+
+buildTeamGrid();
+selectTeam(localStorage.getItem("awayDayTeam") || "warrington");
 </script>
 
 </body>
