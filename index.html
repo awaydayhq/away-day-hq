@@ -1,18 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Away Day HQ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Away Day HQ</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background:
-        linear-gradient(rgba(2,11,20,.84), rgba(2,11,20,.96)),
-        url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1600&q=
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:
+linear-gradient(rgba(3,10,20,.88),rgba(3,10,20,.95)),
+url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+color:white;
+text-align:center;
+padding:30px 20px;
+}
+
+.wrap{
+max-width:900px;
+margin:auto;
+}
+
+.logo{
+width:170px;
+max-width:70%;
+display:block;
+margin:0 auto 20px;
+}
+
+h1{
+font-size:56px;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.hq{
+color:#18D6C7;
+}
+
+.tagline{
+font-size:28px;
+font-weight:bold;
+color:#18D6C7;
+margin-bottom:10px;
+}
+
+.home{
+font-size:22px;
+margin-bottom:12px;
+letter-spacing:1px;
+}
+
+.promise{
+font-size:20px;
+font-weight:bold;
+color:#18D6C7;
+margin-bottom:25px;
+}
+
+.description{
+font-size:20px;
+line-height:1.7;
+max-width:700px;
+margin:0 auto 35px;
+}
+
+.button{
+display:inline-block;
+padding:16px 45px;
+background:#18D6C7;
+color:#071C31;
+text-decoration:none;
+font-weight:bold;
+border-radius:50px;
+font-size:22px;
+margin-bottom:40px;
+}
+
+.features{
+display:grid;
+gap:18px;
+}
+
+.card{
+background:rgba(5,24,45,.75);
+border:1px solid rgba(24,214,199,.35);
+border-radius:18px;
+padding:22px;
+text-align:left;
+backdrop-filter:blur(6px);
+}
+
+.card strong{
+display:block;
+font-size:22px;
+color:#18D6C7;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:18px;
+line-height:1.5;
+color:white;
+}
+
+.footer{
+margin-top:45px;
+font-size:18px;
+opacity:.8;
+}
+
+@media(min-width:750px){
+
+.features{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+<img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ">
+
+<h1>AWAY DAY <span class="hq">HQ</span></h1>
+
+<div class="tagline">
+PLAN IT. &nbsp;&nbsp; EXPERIENCE IT. &nbsp;&nbsp; REMEMBER IT.
+</div>
+
+<div class="home">
+THE HOME OF EVERY MATCHDAY.
+</div>
+
+<div class="promise">
+BUILT BY FANS. FOR FANS.
+</div>
+
+<div class="description">
+Plan your trip, store your tickets, discover fan zones, find the best places to eat and drink, organise your away day, and relive every unforgettable football memory.
+</div>
+
+<a class="button" href="#">
+Launching Soon
+</a>
+
+<div class="features">
+
+<div class="card">
+<strong>🏠 Home Match Planner</strong>
+<p>Everything you need for home games in one place.</p>
+</div>
+
+<div class="card">
+<strong>🎒 Away Day Wallet</strong>
+<p>Tickets, travel, hotels and parking all stored together.</p>
+</div>
+
+<div class="card">
+<strong>🔥 Fan Zones</strong>
+<p>Discover where supporters are gathering before kick-off.</p>
+</div>
+
+<div class="card">
+<strong>🍔 Eat & Drink</strong>
+<p>Find supporter-approved pubs, cafés and food spots.</p>
+</div>
+
+<div class="card">
+<strong>📸 Away Day Memories</strong>
+<p>Save photos, videos and unforgettable away day moments forever.</p>
+</div>
+
+<div class="card">
+<strong>🎨 Club Colours</strong>
+<p>Your Away Day HQ theme changes to match the club you support.</p>
+</div>
+
+</div>
+
+<div class="footer">
+awaydayhq.com
+</div>
+
+</div>
+
+</body>
+</html>
