@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Away Day HQ App</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#020b14;
+  color:white;
+  text-align:center;
+}
+
+.screen{
+  min-height:100vh;
+  padding:35px 22px;
+  background:
+    linear-gradient(rgba(2,10,20,.35),rgba(2,10,20,.95)),
+    url("https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=1200&q=80");
+  background-size:cover;
+  background-position:center;
+}
+
+.logo{
+  width:330px;
+  max-width:95%;
+  margin:45px auto 30px;
+  display:block;
+  border-radius:26px;
+  box-shadow:0 0 45px rgba(24,214,199,.4);
+}
+
+.btn{
+  display:block;
+  width:100%;
+  max-width:360px;
+  margin:14px auto;
+  padding:17px;
+  border-radius:14px;
+  font-size:20px;
+  font-weight:bold;
+  letter-spacing:1px;
+  text-decoration:none;
+}
+
+.login{
+  background:#18D6C7;
+  color:#061A33;
+}
+
+.signup{
+  border:2px solid #18D6C7;
+  color:#18D6C7;
+}
+
+.or{
+  color:#aaa;
+  margin:18px 0 12px;
+}
+
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-bottom:24px;
+}
+
+.social{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:2px solid white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  background:rgba(0,0,0,.35);
+}
+
+.terms{
+  font-size:13px;
+  color:#ddd;
+  line-height:1.5;
+}
+
+.terms span{
+  color:#18D6C7;
+}
+</style>
+</head>
+
+<body>
+<div class="screen">
+
+  <img class="logo" src="IMG_3227.jpeg" alt="Away Day HQ Logo">
+
+  <a class="btn login" href="#">LOGIN</a>
+  <a class="btn signup" href="#">SIGN UP</a>
+
+  <div class="or">OR</div>
+
+  <div class="socials">
+    <div class="social"></div>
+    <div class="social">G</div>
+    <div class="social">✉</div>
+  </div>
+
+  <div class="terms">
+    By continuing you agree to our<br>
+    <span>Terms & Conditions</span> and <span>Privacy Policy</span>
+  </div>
+
+</div>
+</body>
+</html>
